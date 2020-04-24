@@ -18,8 +18,94 @@
 </head>
 
 <body>
-  <h1>Hello, world!</h1>
-  <p>API is powered by <a href="https://opentdb.com/" target="_blank">opentdb</a></p>
+
+  <div class="container">
+
+    <div class="row main-row">
+      <div class="col-sm-12 d-flex justify-content-center">
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title">Welcome!</h5>
+
+            <form action="#" id="welcome-form">
+              <div class="form-group row">
+                <label for="name-input" class="col-sm-5 col-form-label col-form-label-md">Enter name</label>
+                <div class="col-sm-7">
+                  <input type="text" id="name-input" class="form-control form-control-md">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="questions-count-input" class="col-sm-5 col-form-label col-form-label-md">Number of
+                  questions</label>
+                <div class="col-sm-7">
+                  <select id="questions-count-input" class="form-control">
+                    <option disabled>Choose...</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <input id="begin-button" class="btn" type="submit" value="Begin">
+              </div>
+            </form>
+
+          </div>
+        </div>
+        <div class="sidebar">
+          <p>Follow me on:
+            <ul class="sidebar-list">
+              <li>
+                <a href="https://github.com/dalepatrick" target="_blank">
+                  <img src="./images/github.png" id="github-logo" alt="github-logo" title="Github">
+                </a>
+              </li>
+              <li>
+                <img src="./images/discord.png" id="discord-logo" alt="discord-logo" title="Discord">
+              </li>
+            </ul>
+          </p>
+          <p>API is powered by <a href="https://opentdb.com/" target="_blank">opentdb</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row question-row">
+      <div class="col-sm-12 d-flex justify-content-center">
+        <div class="card text-center">
+          <div class="card-header">
+            QUESTION 1
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Which company is the World's Most Ethical Company?</h5>
+
+            <div class="list-group question-choices">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="card-footer text-muted">
+            <a href="#" class="btn btn-primary">Next Question</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 
 
   <!-- Optional JavaScript -->
