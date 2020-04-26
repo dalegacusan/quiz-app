@@ -28,7 +28,7 @@ const generate = {
               <h5 class="card-title">${dataRetrieved.question}</h5>
 
               <div class="list-group question-choices">
-                <ul class="list-group list-group-flush choices-list">
+                <ul class="list-group list-group-flush choices-list" id="choice-list">
                   ${generate.choices(data[i])}
                 </ul>
               </div>
@@ -42,6 +42,26 @@ const generate = {
         `;
 
       $(card).html(markup);
+
+      const choices = card.getElementsByClassName("choices-item");
+
+      for (let item of choices) {
+        const decode = (str) => {
+          return str.replace(/&#(\d+);/g, function (match, dec) {
+            return String.fromCharCode(dec);
+          });
+        };
+
+        console.log(dataRetrieved.correct_answer);
+
+        item.addEventListener("click", () => {
+          if (decode(item.innerHTML) === decode(dataRetrieved.correct_answer)) {
+            item.classList.add("correct-answer");
+          } else {
+            console.log("wrong");
+          }
+        });
+      }
 
       cards.push(card);
     }
@@ -85,7 +105,29 @@ const generate = {
       choices.push(item);
     }
 
-    return choices
+    const shuffle = (array) => {
+      var currentIndex = array.length,
+        temporaryValue,
+        randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    };
+
+    const new_arr = shuffle(choices);
+
+    return new_arr
       .map(
         (answer) => `<li class="list-group-item choices-item">${answer}</li>`
       )
@@ -153,3 +195,9 @@ $("#welcome-form").on("submit", (e) => {
 $("#discord-logo").on("click", () => {
   alert(DISCORD_USERNAME);
 });
+
+function decode(str) {
+  return str.replace(/&#(\d+);/g, function (match, dec) {
+    return String.fromCharCode(dec);
+  });
+}
