@@ -1,4 +1,13 @@
-const DISCORD_USERNAME = "Slomoose#9772";
+/////////////////////////////////////////////////////////////////
+////
+//// Remove correct-answer class if correct answer is clicked
+////
+////////////////////////////////////////////////////////////////
+
+new ClipboardJS("#discord-logo");
+
+$('[data-toggle="tooltip"]').tooltip();
+
 const COMPUTERAPI =
   "https://opentdb.com/api.php?amount=30&category=18&difficulty=easy&type=multiple";
 
@@ -28,7 +37,7 @@ const generate = {
               <h5 class="card-title">${dataRetrieved.question}</h5>
 
               <div class="list-group question-choices">
-                <ul class="list-group list-group-flush choices-list" id="choice-list">
+                <ul class="list-group list-group-flush choices-list">
                   ${generate.choices(data[i])}
                 </ul>
               </div>
@@ -46,19 +55,12 @@ const generate = {
       const choices = card.getElementsByClassName("choices-item");
 
       for (let item of choices) {
-        const decode = (str) => {
-          return str.replace(/&#(\d+);/g, function (match, dec) {
-            return String.fromCharCode(dec);
-          });
-        };
-
-        console.log(dataRetrieved.correct_answer);
-
         item.addEventListener("click", () => {
-          if (decode(item.innerHTML) === decode(dataRetrieved.correct_answer)) {
+          if (
+            generate.decode(item.innerHTML) ===
+            generate.decode(dataRetrieved.correct_answer)
+          ) {
             item.classList.add("correct-answer");
-          } else {
-            console.log("wrong");
           }
         });
       }
@@ -133,6 +135,12 @@ const generate = {
       )
       .join("");
   },
+  result_card: () => {},
+  decode: (str) => {
+    return str.replace(/&#(\d+);/g, function (match, dec) {
+      return String.fromCharCode(dec);
+    });
+  },
 };
 
 $("#welcome-form").on("submit", (e) => {
@@ -163,6 +171,7 @@ $("#welcome-form").on("submit", (e) => {
         $(".main-row").toggle();
 
         let card_count = 0;
+        let score = 0;
 
         const { results } = dataRetrieved;
 
@@ -176,8 +185,29 @@ $("#welcome-form").on("submit", (e) => {
             "next-button"
           );
 
+          const choices = cards_generated[i].getElementsByClassName(
+            "choices-item"
+          );
+
+          const selections = [];
+
+          for (let choice of choices) {
+            choice.addEventListener("click", function (e) {
+              selections.push(e.target.innerHTML);
+            });
+          }
+
           for (let item of button) {
             item.addEventListener("click", () => {
+              if (
+                selections[selections.length - 1] ===
+                questions_generated[i].correct_answer
+              ) {
+                score += 1;
+              }
+
+              console.log(score);
+
               $(cards_generated[card_count]).css("display", "none");
               $(".container").append(cards_generated[card_count + 1]);
 
@@ -192,12 +222,9 @@ $("#welcome-form").on("submit", (e) => {
   }
 });
 
-$("#discord-logo").on("click", () => {
-  alert(DISCORD_USERNAME);
+$("#discord-logo").on("click", function () {
+  $("#discord-logo").attr("title", "Copied!");
+  $("#discord-logo").attr("data-original-title", "Copied!");
+  $("#discord-logo").tooltip("update");
+  $("#discord-logo").tooltip("show");
 });
-
-function decode(str) {
-  return str.replace(/&#(\d+);/g, function (match, dec) {
-    return String.fromCharCode(dec);
-  });
-}
