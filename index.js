@@ -22,7 +22,7 @@ const generate = {
         <div class="col-sm-12 d-flex justify-content-center">
           <div class="card text-center question-card">
             <div class="card-header question-header">
-              QUESTION 1
+              QUESTION <span class="question-count">${i + 1}</span>
             </div>
             <div class="card-body">
               <h5 class="card-title">${dataRetrieved.question}</h5>
@@ -136,9 +136,9 @@ $("#welcome-form").on("submit", (e) => {
 
           for (let item of button) {
             item.addEventListener("click", () => {
-              console.log("clicked");
               $(cards_generated[card_count]).css("display", "none");
               $(".container").append(cards_generated[card_count + 1]);
+
               card_count += 1;
             });
           }
