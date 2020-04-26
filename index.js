@@ -4,7 +4,7 @@
 ////
 ////////////////////////////////////////////////////////////////
 
-new ClipboardJS("#discord-logo");
+const clipboard = new ClipboardJS("#discord-logo");
 
 $('[data-toggle="tooltip"]').tooltip();
 
