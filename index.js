@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////
 ////
-//// Remove correct-answer class if correct answer is clicked
+//// [] Remove correct-answer class functionality
 ////
 ////////////////////////////////////////////////////////////////
 
@@ -51,19 +51,6 @@ const generate = {
         `;
 
       $(card).html(markup);
-
-      const choices = card.getElementsByClassName("choices-item");
-
-      for (let item of choices) {
-        item.addEventListener("click", () => {
-          if (
-            generate.decode(item.innerHTML) ===
-            generate.decode(dataRetrieved.correct_answer)
-          ) {
-            item.classList.add("correct-answer");
-          }
-        });
-      }
 
       cards.push(card);
     }
@@ -131,7 +118,7 @@ const generate = {
 
     return new_arr
       .map(
-        (answer) => `<li class="list-group-item choices-item">${answer}</li>`
+        (answer) => `<li class="list-group-item choices-item choices-item-hover">${answer}</li>`
       )
       .join("");
   },
@@ -190,28 +177,58 @@ $("#welcome-form").on("submit", (e) => {
           );
 
           const selections = [];
+          const selectedElements = [];
 
           for (let choice of choices) {
             choice.addEventListener("click", function (e) {
               selections.push(e.target.innerHTML);
+
+              selectedElements.push(this);
             });
           }
 
           for (let item of button) {
             item.addEventListener("click", () => {
+              for (let choice of choices) {
+                $(choice).removeClass('choices-item-hover');
+              }
+
+              const answer = selectedElements[selectedElements.length - 1];
+
               if (
                 selections[selections.length - 1] ===
                 questions_generated[i].correct_answer
               ) {
                 score += 1;
+                answer.classList.add("correct-answer");
+              } else {
+                answer.classList.add("wrong-answer");
               }
 
-              console.log(score);
-
               $(cards_generated[card_count]).css("display", "none");
-              $(".container").append(cards_generated[card_count + 1]);
 
-              card_count += 1;
+              if (card_count + 1 === cards_generated.length) {
+                const result_card = document.getElementById("result-card");
+                const result_body = document.getElementById("result-body");
+
+                $(result_card).css("display", "inline-block");
+
+                for (let i = 0; i < cards_generated.length; i++) {
+                  $(".question-row").css("display", "inline-block");
+                  $(".question-row").css("marginTop", "20px");
+
+                  $(".question-footer").css("display", "none");
+
+                  $("#score-text").text(`${score}`);
+                  $("#total-text").text(`${ques_count}`);
+
+                  result_body.append(cards_generated[i]);
+                }
+              } else {
+                $(".container").append(cards_generated[card_count + 1]);
+
+                card_count += 1;
+              }
             });
           }
         }

@@ -1,3 +1,11 @@
+/*
+/////////////////////////////////////////////////////////////////
+////
+//// [] Set static height for each card
+////
+////////////////////////////////////////////////////////////////
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -81,7 +89,7 @@ img {
   padding: 12px;
 }
 
-.choices-item:hover {
+.choices-item-hover:hover {
   background-color: #f4f4f4;
   cursor: pointer;
 }
@@ -109,8 +117,19 @@ img {
 .correct-answer{
   background-color: greenyellow;
 }
-.correct-answer:hover{
-  background-color: greenyellow;
+
+.wrong-answer{
+  background-color: red;
 }
 
 /* /#QUESTION-ROW */
+
+/* /RESULTS CONTAINERS */
+.result-card{
+  background-color: #feffff;
+  padding: 20px 30px;
+  width: 55.5rem;
+  border-radius: 5px;
+  display: none;
+}
+/* /#RESULTS CONTAINERS */
