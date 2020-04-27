@@ -134,10 +134,28 @@ img {
 
 /* /RESULTS CONTAINERS */
 .result-card{
-  background-color: #feffff;
+  background-color: #77a6f7;
   padding: 20px 30px;
-  width: 55.5rem;
+  width: 46.5rem;
   border-radius: 5px;
+  border-color: #77a6f7;
   display: none;
+}
+
+.result-header{
+  background-color: #92b7f8;
+  padding: 50px;
+}
+
+.results-head-text{
+  font-size: 30px;
+}
+
+#score-head{
+  font-size: 20px;
+}
+
+#check-logo{
+  height: 35px;
 }
 /* /#RESULTS CONTAINERS */
