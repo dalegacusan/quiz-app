@@ -118,7 +118,8 @@ const generate = {
 
     return new_arr
       .map(
-        (answer) => `<li class="list-group-item choices-item choices-item-hover">${answer}</li>`
+        (answer) =>
+          `<li class="list-group-item choices-item choices-item-hover">${answer}</li>`
       )
       .join("");
   },
@@ -183,6 +184,14 @@ $("#welcome-form").on("submit", (e) => {
             choice.addEventListener("click", function (e) {
               selections.push(e.target.innerHTML);
 
+              if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected selected-hover");
+                $(".choices-item").removeClass("selected selected-hover");
+              } else {
+                $(".choices-item").removeClass("selected selected-hover");
+                $(this).addClass("selected selected-hover");
+              }
+
               selectedElements.push(this);
             });
           }
@@ -190,7 +199,8 @@ $("#welcome-form").on("submit", (e) => {
           for (let item of button) {
             item.addEventListener("click", () => {
               for (let choice of choices) {
-                $(choice).removeClass('choices-item-hover');
+                $(choice).removeClass("choices-item-hover");
+                $(choice).removeClass("selected selected-hover");
               }
 
               const answer = selectedElements[selectedElements.length - 1];

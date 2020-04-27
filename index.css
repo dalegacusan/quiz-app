@@ -90,7 +90,7 @@ img {
 }
 
 .choices-item-hover:hover {
-  background-color: #f4f4f4;
+  background: rgb(255, 204, 188, 0.4);
   cursor: pointer;
 }
 
@@ -115,12 +115,20 @@ img {
 }
 
 .correct-answer{
-  background-color: greenyellow;
+  background: rgba(119, 221, 119, 0.6);
 }
 
 .wrong-answer{
-  background-color: red;
+  background: rgba(255, 105, 97, 0.6);
 }
+
+.selected{
+  background-color: rgb(255, 204, 188, 0.8);
+}
+.selected-hover:hover{
+  background: rgb(255, 204, 188, 0.8);
+}
+
 
 /* /#QUESTION-ROW */
 
