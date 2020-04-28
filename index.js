@@ -4,8 +4,6 @@
 ////
 ////////////////////////////////////////////////////////////////
 
-const clipboard = new ClipboardJS("#discord-logo");
-
 $('[data-toggle="tooltip"]').tooltip();
 
 const COMPUTERAPI =
@@ -249,9 +247,21 @@ $("#welcome-form").on("submit", (e) => {
   }
 });
 
+function copy(value) {
+  var tempInput = document.createElement("input");
+  tempInput.value = value;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+}
+
+
 $("#discord-logo").on("click", function () {
   $("#discord-logo").attr("title", "Copied!");
   $("#discord-logo").attr("data-original-title", "Copied!");
   $("#discord-logo").tooltip("update");
   $("#discord-logo").tooltip("show");
+
+  copy('Slomoose#9772');
 });

@@ -16,7 +16,5 @@
     "url": "https://github.com/dalepatrick/quiz-app/issues"
   },
   "homepage": "https://github.com/dalepatrick/quiz-app#readme",
-  "dependencies": {
-    "clipboard": "^2.0.6"
-  }
+  "dependencies": {}
 }
