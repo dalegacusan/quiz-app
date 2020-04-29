@@ -159,3 +159,7 @@ img {
   height: 35px;
 }
 /* /#RESULTS CONTAINERS */
+
+.disable{
+  pointer-events: none;
+}

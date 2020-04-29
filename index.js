@@ -1,9 +1,3 @@
-/////////////////////////////////////////////////////////////////
-////
-//// [] Remove correct-answer class functionality
-////
-////////////////////////////////////////////////////////////////
-
 $('[data-toggle="tooltip"]').tooltip();
 
 const COMPUTERAPI =
@@ -196,9 +190,14 @@ $("#welcome-form").on("submit", (e) => {
 
           for (let item of button) {
             item.addEventListener("click", () => {
+              if (selections.length === 0) {
+                return;
+              }
+
               for (let choice of choices) {
                 $(choice).removeClass("choices-item-hover");
                 $(choice).removeClass("selected selected-hover");
+                $(choice).addClass("disable");
               }
 
               const answer = selectedElements[selectedElements.length - 1];
@@ -256,12 +255,11 @@ function copy(value) {
   document.body.removeChild(tempInput);
 }
 
-
 $("#discord-logo").on("click", function () {
   $("#discord-logo").attr("title", "Copied!");
   $("#discord-logo").attr("data-original-title", "Copied!");
   $("#discord-logo").tooltip("update");
   $("#discord-logo").tooltip("show");
 
-  copy('Slomoose#9772');
+  copy("Slomoose#9772");
 });
