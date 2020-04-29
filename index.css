@@ -127,6 +127,7 @@ img {
 }
 .selected-hover:hover{
   background: rgb(255, 204, 188, 0.8);
+  cursor: pointer;
 }
 
 

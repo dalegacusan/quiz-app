@@ -176,9 +176,15 @@ $("#welcome-form").on("submit", (e) => {
             choice.addEventListener("click", function (e) {
               selections.push(e.target.innerHTML);
 
+              console.log(selectedElements[selectedElements.length - 1]);
+              console.log($(this));
+
+              $(this).addClass("selected-hover");
+
               if ($(this).hasClass("selected")) {
-                $(this).removeClass("selected selected-hover");
-                $(".choices-item").removeClass("selected selected-hover");
+                $(this).removeClass("selected-hover choices-item-hover");
+                $(".choices-item").removeClass("selected-hover");
+                $(".choices-item").addClass("choices-item-hover");
               } else {
                 $(".choices-item").removeClass("selected selected-hover");
                 $(this).addClass("selected selected-hover");
